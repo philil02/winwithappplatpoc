@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ACR_LOGIN_SERVER: winwithappplatpocacrphilil.azurecr.io.azurecr.io
-      ACR_USERNAME: ${{ secrets.acr_username }}
-      ACR_PASSWORD: ${{ secrets.acr_password }}
       AKS_NAMESPACE: health-check
       CONTAINER_IMAGE: winwithappplatpocacrphilil.azurecr.io/humongous-healthcare-api:${{ github.sha }}
     steps:
@@ -29,7 +27,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker login ${ACR_LOGIN_SERVER} -u ${ACR_USERNAME} -p ${ACR_PASSWORD}
+        echo ${{ secrets.acr_password }} | $ docker login ${ACR_LOGIN_SERVER} -u ${{ secrets.acr_username }} --password-stdin
         docker build "$GITHUB_WORKSPACE/Humongous.Healthcare" -f  "Humongous.Healthcare/Dockerfile" -t ${CONTAINER_IMAGE} --label dockerfile-path=Humongous.Healthcare/Dockerfile
         docker push ${CONTAINER_IMAGE}
 
