@@ -1,6 +1,6 @@
 # Humongous.Healthcare API Service modified by me and only me
 
-This codebase is a representative example of a Health Check tracking API service for Humongous Healthcare.!/
+This codebase is a representative example of a Health Check tracking API service for Humongous Healthcare.!
 
 # Running the API Service
 

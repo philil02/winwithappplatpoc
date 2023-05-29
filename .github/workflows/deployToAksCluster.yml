@@ -21,8 +21,8 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: ${{ env.ACR_LOGIN_SERVER }}
-        username: ${{ secrets.acr_username }}
-        password: ${{ secrets.acr_password }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
     - name: Build & Push
       id: build-image
       uses: docker/build-push-action@v2
@@ -51,8 +51,8 @@ jobs:
       with:
         namespace: ${{ env.AKS_NAMESPACE }}
         container-registry-url: ${{ env.ACR_LOGIN_SERVER }}
-        container-registry-username: ${{ secrets.acr_username }}
-        container-registry-password: ${{ secrets.acr_password }}
+        container-registry-username: ${{ secrets.ACR_USERNAME }}
+        container-registry-password: ${{ secrets.ACR_PASSWORD }}
         secret-name: dockerauth
 
     - uses: Azure/k8s-create-secret@v1
