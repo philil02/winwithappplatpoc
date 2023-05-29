@@ -27,7 +27,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        echo ${{ secrets.acr_password }} | docker login ${ACR_LOGIN_SERVER} -u ${{ secrets.acr_username }} --password-stdin
+        echo ${{ secrets.acr_password }} | docker login ${{ env.ACR_LOGIN_SERVER }} -u ${{ secrets.acr_username }} --password-stdin
         docker build "$GITHUB_WORKSPACE/Humongous.Healthcare" -f  "Humongous.Healthcare/Dockerfile" -t ${CONTAINER_IMAGE} --label dockerfile-path=Humongous.Healthcare/Dockerfile
         docker push ${CONTAINER_IMAGE}
 
